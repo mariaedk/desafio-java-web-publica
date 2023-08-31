@@ -1,5 +1,7 @@
 package br.com.obras.obras.application.controller;
 
+import br.com.obras.obras.application.dtos.CriarObraPrivadaDTO;
+import br.com.obras.obras.application.dtos.CriarObraPublicaDTO;
 import br.com.obras.obras.application.dtos.ObraDTO;
 import br.com.obras.obras.application.service.ObraService;
 import br.com.obras.obras.domain.enums.TipoObra;
@@ -92,9 +94,9 @@ public class ObraController {
      * @return obraDTO, obra privada que foi salva
      */
     @PostMapping("obraPrivada")
-    public ResponseEntity<ObraDTO> cadastrarObraPrivada(@RequestBody ObraDTO obra) {
+    public ResponseEntity<ObraDTO> cadastrarObraPrivada(@RequestBody CriarObraPrivadaDTO obra) {
         try {
-            ObraDTO obraSalvar = obraService.cadastrarObra(obra, TipoObra.PRIVADA);
+            ObraDTO obraSalvar = obraService.cadastrarObraPrivada(obra, TipoObra.PRIVADA);
             return new ResponseEntity<ObraDTO>(obraSalvar, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -108,9 +110,9 @@ public class ObraController {
      * @return obraDTO, obra pública que foi salva
      */
     @PostMapping("obraPublica")
-    public ResponseEntity<ObraDTO> cadastrarObraPublica(@RequestBody ObraDTO obra) {
+    public ResponseEntity<ObraDTO> cadastrarObraPublica(@RequestBody CriarObraPublicaDTO obra) {
         try {
-            ObraDTO obraSalvar = obraService.cadastrarObra(obra, TipoObra.PUBLICA);
+            ObraDTO obraSalvar = obraService.cadastrarObraPublica(obra, TipoObra.PUBLICA);
             return new ResponseEntity<ObraDTO>(obraSalvar, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -5,6 +5,7 @@ import br.com.obras.obras.domain.enums.TipoZona;
 import lombok.Getter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,8 +19,10 @@ public class Obra {
     private Long numeroObra;
 
     @Column(name = "dt_cadastro")
+    @NotNull
     private LocalDate dataCadastro;
 
+    @NotNull
     private String descricao;
 
     private TipoZona zona;

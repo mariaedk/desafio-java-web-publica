@@ -3,6 +3,7 @@ package br.com.obras.obras.domain.entities;
 import lombok.Getter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,10 @@ public class Responsavel {
     private Long id;
 
     @Column(length = 11) // Somente caracteres numéricos
+    @NotNull
     private String cpf;
 
+    @NotNull
     private String nome;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsavel")

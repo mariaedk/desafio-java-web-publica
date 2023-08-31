@@ -1,8 +1,6 @@
 package br.com.obras.obras.application.service;
 
-import br.com.obras.obras.application.dtos.ObraDTO;
-import br.com.obras.obras.application.dtos.ResponsavelDTO;
-import br.com.obras.obras.application.dtos.ServicoDTO;
+import br.com.obras.obras.application.dtos.*;
 import br.com.obras.obras.application.mapper.ObraMapper;
 import br.com.obras.obras.domain.entities.Obra;
 import br.com.obras.obras.domain.enums.TipoObra;
@@ -78,10 +76,28 @@ public class ObraService {
     }
 
     /**
+     * Realiza direcionamento de cadastro de obra privada
+     * @return Obra que foi salva
+     */
+    public ObraDTO cadastrarObraPrivada(CriarObraPrivadaDTO criarObraPrivadaDTO, TipoObra tipoObra) throws Exception {
+        ObraDTO obraDTO = obraMapper.criarPrivadaToDto(criarObraPrivadaDTO);
+        return this.cadastrarObra(obraDTO, tipoObra);
+    }
+
+    /**
+     * Realiza direcionamento de cadastro de obra publica
+     * @return Obra que foi salva
+     */
+    public ObraDTO cadastrarObraPublica(CriarObraPublicaDTO criarObraPublicaDTO, TipoObra tipoObra) throws Exception {
+        ObraDTO obraDTO = obraMapper.criarPublicaToDto(criarObraPublicaDTO);
+        return this.cadastrarObra(obraDTO, tipoObra);
+    }
+
+    /**
      * Realiza o cadastro de uma obra e salva a relação Obra-Responsavel na tabela Servico, armazenando os IDs de cada.
      * @return Obra que foi salva
      */
-    public ObraDTO cadastrarObra(ObraDTO obra, TipoObra tipoObra) throws Exception {
+    private ObraDTO cadastrarObra(ObraDTO obra, TipoObra tipoObra) throws Exception {
         Obra obraEntity = obraMapper.toEntity(obra);
         // Flag que determina o comportamento da entidade em tipo da obra, para depois filtrar
         obraEntity.atribuirTipoObra(tipoObra);
