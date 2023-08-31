@@ -97,6 +97,9 @@ Ou se estiver abrindo o projeto em uma IDE, executar por um botão disponível.
 
 
 ## Como funciona o projeto
+
+<img src="./back-end/docs/diagrama.png">
+
 * Para cadastrar uma obra com responsáveis, é necessário que estes responsáveis já estejam cadastrados.
 * Responsáveis devem ter CPF único.
 * Devem ser informados apenas caracteres numéricos no CPF no formato de String.
