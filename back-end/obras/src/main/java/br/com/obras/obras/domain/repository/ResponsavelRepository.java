@@ -13,10 +13,11 @@ import java.util.Optional;
 public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> {
     Optional<Responsavel> findByCpf(String cpf);
 
-    @Query(value = "SELECT r.* FROM responsavel r " +
-            "JOIN servico s ON r.id_responsavel = s.id_responsavel " +
-            "JOIN obra o ON s.nr_obra = o.nr_obra " +
-            "WHERE o.nr_obra = :numeroObra", nativeQuery = true)
+    // Consulta JPQL
+    @Query("SELECT r FROM Responsavel r " +
+            "JOIN r.servicos s " +
+            "JOIN s.obra o " +
+            "WHERE o.numeroObra = :numeroObra")
     List<Responsavel> buscarResponsaveisPorNumeroObra(@Param("numeroObra") Long numeroObra);
 
 }
